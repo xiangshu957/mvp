@@ -1,2 +1,3 @@
+include ':basemvp'
 include ':app'
 rootProject.name = "mvp"
