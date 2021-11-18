@@ -32,6 +32,7 @@ public class RetrofitManager {
     private ArrayList<String> oneNetList;
     private static String baseUrl;
     private static List<String> imageUrlList;
+    private static Class<?> retrofitApiServiceClass;
     private static RetrofitApiService retrofitApiService;
 
     private RetrofitManager() {
@@ -47,14 +48,14 @@ public class RetrofitManager {
      * @param list  不可空
      * @return
      */
-    public static RetrofitManager getInstance(String baseUrl, List<String> list,RetrofitApiService retrofitApiService) {
+    public static RetrofitManager getInstance(String baseUrl, List<String> list,Class<?> retrofitApiService) {
         if (retrofitManager == null) {
             synchronized (RetrofitManager.class) {
                 if (retrofitManager == null) {
                     retrofitManager = new RetrofitManager();
                     RetrofitManager.baseUrl = baseUrl;
                     RetrofitManager.imageUrlList = list;
-                    RetrofitManager.retrofitApiService = retrofitApiService;
+                    RetrofitManager.retrofitApiServiceClass = retrofitApiService;
                 } else {
                     retrofitManager = null;
                     getInstance(baseUrl, list,retrofitApiService);
@@ -89,7 +90,7 @@ public class RetrofitManager {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();
-        retrofitApiService = retrofit.create(RetrofitApiService.class);
+        retrofitApiService = (RetrofitApiService) retrofit.create(retrofitApiServiceClass);
     }
 
     private void initOkHttpClient() {
