@@ -11,9 +11,14 @@ public interface MainContract {
 
     interface View extends BaseView{
 
+        void getDataSuccess(String dataJson);
+        void getDataFail(String message);
+
     }
 
     interface Presenter {
+
+        void getData();
 
     }
 

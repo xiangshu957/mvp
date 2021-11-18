@@ -5,6 +5,7 @@ import android.content.Context;
 import com.zrx.basemvp.retrofitwithrxjava.RetrofitManager;
 import com.zrx.mvp.api.RetrofitApi;
 import com.zrx.mvp.common.SysCommon;
+import com.zrx.mvp.daggerforandroid.DaggerAppComponent;
 
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
@@ -23,12 +24,12 @@ public class MyApplication extends DaggerApplication {
         super.onCreate();
         context = this;
 
-//        RetrofitManager.getInstance(SysCommon.BASE_URL,null, RetrofitApi.class);
+        RetrofitManager.getInstance(SysCommon.BASE_URL,null, RetrofitApi.class);
     }
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return null;
+        return DaggerAppComponent.builder().application(this).build();
     }
 
     public static Context getContext(){

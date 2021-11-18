@@ -52,10 +52,10 @@ public class RetrofitManager {
         if (retrofitManager == null) {
             synchronized (RetrofitManager.class) {
                 if (retrofitManager == null) {
-                    retrofitManager = new RetrofitManager();
                     RetrofitManager.baseUrl = baseUrl;
                     RetrofitManager.imageUrlList = list;
                     RetrofitManager.retrofitApiServiceClass = retrofitApiService;
+                    retrofitManager = new RetrofitManager();
                 } else {
                     retrofitManager = null;
                     getInstance(baseUrl, list,retrofitApiService);

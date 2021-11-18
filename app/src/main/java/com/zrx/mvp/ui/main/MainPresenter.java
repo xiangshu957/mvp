@@ -1,6 +1,9 @@
 package com.zrx.mvp.ui.main;
 
+import android.annotation.SuppressLint;
+
 import com.zrx.basemvp.base.BasePresenter;
+import com.zrx.mvp.api.RetrofitApi;
 
 import javax.inject.Inject;
 
@@ -12,10 +15,22 @@ import javax.inject.Inject;
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
     @Inject
-    public MainPresenter(){
+    public MainPresenter() {
 
     }
 
 
+    @SuppressLint("CheckResult")
+    @Override
+    public void getData() {
 
+        observe(((RetrofitApi) apiService()).getData(), false)
+                .subscribe(s -> {
+                    getView().getDataSuccess(s);
+                }, throwable -> {
+                    getView().getDataFail(throwable.getMessage());
+                });
+
+
+    }
 }
