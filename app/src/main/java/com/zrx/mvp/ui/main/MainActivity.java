@@ -1,8 +1,10 @@
 package com.zrx.mvp.ui.main;
 
 import com.zrx.basemvp.base.BaseActivity;
+import com.zrx.basemvp.utils.GsonUtils;
 import com.zrx.basemvp.utils.LogUtils;
 import com.zrx.mvp.R;
+import com.zrx.mvp.model.TestBean;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
@@ -48,8 +50,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @Override
-    public void getDataSuccess(String dataJson) {
-        LogUtils.e(dataJson);
+    public void getDataSuccess(TestBean dataJson) {
+        LogUtils.e(GsonUtils.ser(dataJson));
     }
 
     @Override

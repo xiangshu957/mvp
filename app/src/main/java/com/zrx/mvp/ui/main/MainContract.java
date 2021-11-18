@@ -1,6 +1,7 @@
 package com.zrx.mvp.ui.main;
 
 import com.zrx.basemvp.base.BaseView;
+import com.zrx.mvp.model.TestBean;
 
 /**
  * @Author: ZhangRuixiang
@@ -11,7 +12,7 @@ public interface MainContract {
 
     interface View extends BaseView{
 
-        void getDataSuccess(String dataJson);
+        void getDataSuccess(TestBean dataJson);
         void getDataFail(String message);
 
     }

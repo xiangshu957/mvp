@@ -3,6 +3,7 @@ package com.zrx.mvp.application;
 import android.content.Context;
 
 import com.zrx.basemvp.retrofitwithrxjava.RetrofitManager;
+import com.zrx.basemvp.utils.PreferenceUtil;
 import com.zrx.mvp.api.RetrofitApi;
 import com.zrx.mvp.common.SysCommon;
 import com.zrx.mvp.daggerforandroid.DaggerAppComponent;
@@ -24,7 +25,8 @@ public class MyApplication extends DaggerApplication {
         super.onCreate();
         context = this;
 
-        RetrofitManager.getInstance(SysCommon.BASE_URL,null, RetrofitApi.class);
+        PreferenceUtil.getInstance().init(this, "test_sp");
+        RetrofitManager.getInstance(SysCommon.BASE_URL, null, RetrofitApi.class);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class MyApplication extends DaggerApplication {
         return DaggerAppComponent.builder().application(this).build();
     }
 
-    public static Context getContext(){
+    public static Context getContext() {
         return context;
     }
 }

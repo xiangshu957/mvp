@@ -23,7 +23,8 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @SuppressLint("CheckResult")
     @Override
     public void getData() {
-
+        setOfflineCacheTime(0);
+        setOnlineCacheTime(0);
         observe(((RetrofitApi) apiService()).getData(), false)
                 .subscribe(s -> {
                     getView().getDataSuccess(s);
