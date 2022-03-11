@@ -75,7 +75,7 @@ public class HttpLogInterceptor implements Interceptor {
         Response response = chain.proceed(request);
         String rBody = "";
         String netUrl = request.url().toString();
-        if (!netUrl.contains("")) {
+        if (!imageUrlList.contains(netUrl)) {
             ResponseBody responseBody = response.body();
             BufferedSource source = responseBody.source();
             source.request(Long.MAX_VALUE);
