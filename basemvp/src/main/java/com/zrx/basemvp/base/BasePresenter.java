@@ -1,5 +1,7 @@
 package com.zrx.basemvp.base;
 
+import android.content.Context;
+
 import com.zrx.basemvp.retrofitwithrxjava.RetrofitApiService;
 import com.zrx.basemvp.retrofitwithrxjava.RetrofitManager;
 import com.zrx.basemvp.retrofitwithrxjava.downloadutils.FileDownloadObserver;
@@ -147,6 +149,10 @@ public class BasePresenter<V extends BaseView> {
     //设置离线网络缓存有效时间
     public void setOfflineCacheTime(int time) {
         OfflineCacheInterceptor.getInstance().setOfflineCacheTime(time);
+    }
+
+    public void setContext(Context context){
+        OfflineCacheInterceptor.getInstance().setContext(context);
     }
 
     public void addOnNet(String tag) {

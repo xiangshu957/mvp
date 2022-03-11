@@ -50,6 +50,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxFragmentAc
         mPresenter = createPresenter();
         if (mPresenter != null) {
             mPresenter.attachView(this);
+            mPresenter.setContext(this);
         }
         setListener();
         processLogic();

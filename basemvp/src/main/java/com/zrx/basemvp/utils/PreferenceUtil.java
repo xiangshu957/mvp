@@ -21,8 +21,8 @@ import java.util.Map;
 public class PreferenceUtil {
 
     private static PreferenceUtil preferenceUtil;
-    private Context context;
-    private String FILE_NAME = "zrx_pro";
+    private static Context context;
+    private static String FILE_NAME = "zrx_pro";
 
     private PreferenceUtil() {
 
@@ -44,7 +44,7 @@ public class PreferenceUtil {
         return preferenceUtil;
     }
 
-    public <T extends Serializable> boolean save(T entity, String key) {
+    public static  <T extends Serializable> boolean save(T entity, String key) {
         if (entity == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "T can't be null");
             return false;
@@ -61,7 +61,7 @@ public class PreferenceUtil {
         return edit.commit();
     }
 
-    public <T extends Serializable> List<T> findAll(String key, Class<T> tClass) {
+    public static  <T extends Serializable> List<T> findAll(String key, Class<T> tClass) {
         String preFileName = tClass.getName();
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
@@ -81,7 +81,7 @@ public class PreferenceUtil {
         return results;
     }
 
-    public <T extends Serializable> T find(String key, Class<T> tClass) {
+    public static  <T extends Serializable> T find(String key, Class<T> tClass) {
         String preFileName = tClass.getName();
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
@@ -96,7 +96,7 @@ public class PreferenceUtil {
         return GsonUtils.deser(json, tClass);
     }
 
-    public <T extends Serializable> boolean delete(String key, Class<T> tClass) {
+    public static  <T extends Serializable> boolean delete(String key, Class<T> tClass) {
         String preFileName = tClass.getName();
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
@@ -109,7 +109,7 @@ public class PreferenceUtil {
         return true;
     }
 
-    public <T extends Serializable> boolean deleteAll(Class<T> tClass) {
+    public static <T extends Serializable> boolean deleteAll(Class<T> tClass) {
         String preFileName = tClass.getName();
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
@@ -127,7 +127,7 @@ public class PreferenceUtil {
      * @param object
      * @return
      */
-    public boolean put(String key, Object object) {
+    public static boolean put(String key, Object object) {
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
             return false;
@@ -163,7 +163,7 @@ public class PreferenceUtil {
      * @param defaultValue
      * @return
      */
-    public Object get(String key, Object defaultValue) {
+    public static Object get(String key, Object defaultValue) {
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
             return null;
@@ -194,7 +194,7 @@ public class PreferenceUtil {
      * @param key
      * @return
      */
-    public boolean remove(String key) {
+    public static boolean remove(String key) {
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
             return false;
@@ -215,7 +215,7 @@ public class PreferenceUtil {
      *
      * @return
      */
-    public boolean clear() {
+    public static boolean clear() {
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
             return false;
@@ -237,7 +237,7 @@ public class PreferenceUtil {
      * @param key
      * @return
      */
-    public boolean contains(String key) {
+    public static boolean contains(String key) {
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
             return false;
@@ -255,7 +255,7 @@ public class PreferenceUtil {
      *
      * @return
      */
-    public Map<String, ?> getAll() {
+    public static Map<String, ?> getAll() {
         if (context == null) {
             Log.e(PreferenceUtil.class.getSimpleName(), "context can't be null,please var");
             return null;

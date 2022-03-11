@@ -33,7 +33,7 @@ public class RetrofitManager {
     private static String baseUrl;
     private static List<String> imageUrlList;
     private static Class<?> retrofitApiServiceClass;
-    private static RetrofitApiService retrofitApiService;
+    private RetrofitApiService retrofitApiService;
 
     private RetrofitManager() {
         oneNetList = new ArrayList<>();
@@ -46,9 +46,8 @@ public class RetrofitManager {
      * 建议在application中初始化
      * @param baseUrl 不可空
      * @param list  不可空
-     * @return
      */
-    public static RetrofitManager getInstance(String baseUrl, List<String> list,Class<?> retrofitApiService) {
+    public static void getInstance(String baseUrl, List<String> list, Class<?> retrofitApiService) {
         if (retrofitManager == null) {
             synchronized (RetrofitManager.class) {
                 if (retrofitManager == null) {
@@ -65,7 +64,6 @@ public class RetrofitManager {
             retrofitManager = null;
             getInstance(baseUrl, list,retrofitApiService);
         }
-        return retrofitManager;
     }
 
     public static RetrofitManager getInstance(){
@@ -111,7 +109,11 @@ public class RetrofitManager {
     }
 
     public RetrofitApiService getRetrofitApiService(){
-        return retrofitApiService;
+        if (retrofitManager == null){
+            retrofitManager = getInstance();
+        }
+        assert retrofitManager != null;
+        return retrofitManager.retrofitApiService;
     }
 
 }
